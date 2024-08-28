@@ -83,7 +83,7 @@
                         <label for="payment_method" class="block text-gray-700 font-medium mb-2">Payment Method:</label>
                         <select id="payment_method" name="payment_method" required
                             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
-                            <option value="card" {{ old('payment_method') == 'card' ? 'selected' : '' }}>Credit/Debit Card</option>
+                            <!-- <option value="card" {{ old('payment_method') == 'card' ? 'selected' : '' }}>Credit/Debit Card</option> -->
                             <option value="cash" {{ old('payment_method') == 'cash' ? 'selected' : '' }}>Cash</option>
                         </select>
                     </div>
@@ -99,10 +99,9 @@
                     class="mt-6 bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500">
                     Book Now
                 </button>
+                <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400" onclick="window.location.href='{{ url('/') }}'">
+                    Cancel
                 </button>
-                    <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400" onclick="window.location.href='{{ url('/') }}'">
-                        Cancel
-                    </button>
             </form>
         </section>
     </div>
@@ -139,7 +138,10 @@
                             timeSelect.appendChild(option);
                         });
                     })
-                    .catch(error => console.error('Error fetching slots:', error));
+                    .catch(error => {
+                        console.error('Error fetching slots:', error);
+                        timeSelect.innerHTML = '<option value="">Select a time</option>';
+                    });
             } else {
                 timeSelect.innerHTML = '<option value="">Select a time</option>';
             }

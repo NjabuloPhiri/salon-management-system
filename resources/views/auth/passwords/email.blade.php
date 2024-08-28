@@ -19,7 +19,7 @@
                 @csrf
 
                 <div class="mb-6">
-                    <label for="email" class="block text-gray-700 font-medium mb-2">{{ __('Email Address') }}</label>
+                    <label for="email" class="block text-gray-700 font-medium mb-2">{{ __('email_address') }}</label>
                     <input id="email" type="email" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     
                     @error('email')
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit" class="bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <button type="email" class="bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500">
                         {{ __('Send Password Reset Link') }}
                         </button>
                     <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400" onclick="window.location.href='{{ url('/') }}'">

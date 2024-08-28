@@ -33,14 +33,13 @@ class BookingController extends Controller
 
         $dateTime = Carbon::parse($validated['appointment_date'] . ' ' . $validated['appointment_time']);
 
-        // Validate that the selected slot is not already fully booked for the specific service
+        // Check if the selected slot is still available
         $bookingCount = Appointment::whereDate('appointment_date', $validated['appointment_date'])
                                    ->where('appointment_time', $validated['appointment_time'])
-                                   ->where('service_id', $validated['service_id'])
                                    ->sum('group_size');
 
         if ($bookingCount + $validated['group_size'] >= 12) {
-            return redirect()->route('booking.create')->withErrors(['appointment_time' => 'The selected time slot for this service is no longer available. Please choose another time or service.']);
+            return redirect()->route('booking.create')->withErrors(['appointment_time' => 'The selected time slot is no longer available. Please choose another time.']);
         }
 
         if ($validated['payment_method'] === 'card') {
@@ -70,13 +69,11 @@ class BookingController extends Controller
         return redirect()->route('booking.create')->with('success', 'Booking confirmed!');
     }
 
-    // Fetch available and unavailable slots for the selected date and service
+    // Fetch available slots for the selected date
     public function getAvailableSlots(Request $request)
     {
         $date = $request->input('date');
-        $serviceId = $request->input('service_id');
         $availableSlots = [];
-        $unavailableSlots = [];
 
         $startTime = Carbon::parse($date . ' 09:00');
         $endTime = Carbon::parse($date . ' 17:00');
@@ -86,22 +83,15 @@ class BookingController extends Controller
             $slot = $startTime->format('H:i');
             $bookingCount = Appointment::whereDate('appointment_date', $date)
                                         ->where('appointment_time', $slot)
-                                        ->where('service_id', $serviceId)
                                         ->sum('group_size');
 
             if ($bookingCount < 12) {
                 $availableSlots[] = $slot;
-            } else {
-                $unavailableSlots[] = $slot;
             }
 
             $startTime->addMinutes($interval);
         }
 
-        return response()->json([
-            'available' => $availableSlots,
-            'unavailable' => $unavailableSlots
-        ]);
+        return response()->json($availableSlots);
     }
 }
-
