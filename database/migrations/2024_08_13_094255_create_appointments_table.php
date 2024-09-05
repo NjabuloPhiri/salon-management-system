@@ -15,6 +15,9 @@ class CreateAppointmentsTable extends Migration
             $table->time('appointment_time');
             $table->integer('group_size')->default(1); // Support for group bookings
             $table->timestamps();
+
+            $table->unique(['appointment_date', 'appointment_time'], 'unique_appointment_slot');
+
         });
     }
 
