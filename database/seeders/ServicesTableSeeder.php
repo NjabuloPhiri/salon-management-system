@@ -1,23 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class Service extends Model
+class ServicesTableSeeder extends Seeder
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'name',
-        'price',
-        'group',
-    ];
-
-    public static function getServiceGroups()
+    public function run()
     {
-        return [
+        $services = [
             'Manicure' => [
                 ['name' => 'Gel Soak Off', 'price' => 40],
                 ['name' => 'Acrylic Soak Off', 'price' => 60],
@@ -71,17 +63,22 @@ class Service extends Model
             ],
             'Extras' => [
                 ['name' => 'French Tips', 'price' => 10],
-                ['name' => 'Nail', 'price' => 15-30],
+                ['name' => 'Nail', 'price' => '15-30'],
                 ['name' => 'Chrome Powder', 'price' => 50],
                 ['name' => 'Extra Length', 'price' => 60],
                 ['name' => 'Stones/Stickers', 'price' => 10],
                 ['name' => 'Nail Fix', 'price' => 20],
             ],
         ];
-    }
 
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
+        foreach ($services as $category => $items) {
+            foreach ($items as $item) {
+                DB::table('services')->insert([
+                    'category' => $category,
+                    'name' => $item['name'],
+                    'price' => $item['price'],
+                ]);
+            }
+        }
     }
 }

@@ -9,12 +9,9 @@ use App\Models\Service; // Assuming you have a Service model
 
 class ServiceController extends Controller
 {
-    public function index()
-    {
-        // Fetching services from the database
-        $services = Service::all();
-
-        // Passing the services data to the view
-        return view('services.index', compact('services'));
-    }
+   public function index()
+   {
+    $services = Service::all();
+    return view('services', compact('services'));
+   }
 }

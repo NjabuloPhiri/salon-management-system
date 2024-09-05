@@ -25,7 +25,7 @@
                     <div class="hidden md:flex md:ml-10">
                         <div class="flex items-center space-x-4">
                             <a href="{{ route('home') }}" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                            <a href="{{ route('services.index') }}" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                            
                             <a href="{{ route('booking.create') }}" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Book Now</a>
                             <a href="{{ route('contact.create') }}" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                             <a href="{{ route('about') }}" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">About Us</a>
@@ -80,7 +80,7 @@
             <div class="md:hidden" id="mobile-menu">
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <a href="{{ route('home') }}" class="bg-gray-800 text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                    <a href="{{ route('services.index') }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                    
                     <a href="{{ route('booking.create') }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Book Now</a>
                     <a href="{{ route('contact.create') }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
                     <a href="{{ route('about') }}" class="text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About Us</a>

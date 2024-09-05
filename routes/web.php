@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BookingController;
+
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,28 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+// Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+
+Route::get('/services', function () {
+    return view('services.services');
+})->name('services');
+
+// Route::get('/services', [ServiceController::class, 'index']);
+
+
+// Test database with services
+// Route::get('/services', [ServiceController::class, 'index']);
+
+
+// Create route to map to the `getServicesForDropdown()` function in the `ServiceController`
+// Route::get('/services', [ServiceController::class, 'getServicesForDropdown']);
+
+Route::post('/book-appointment', [BookingController::class, 'store'])
+    ->middleware('auth', 'check.timeslot')
+    ->name('book-appointment');
+
+
+
 
 // Authentication routes (login, register, etc.)
 
@@ -38,7 +61,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
-    return view('about');
+    return view('about.about');
 })->name('about');
 
 
