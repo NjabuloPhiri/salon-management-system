@@ -33,16 +33,15 @@
                     @foreach($services as $service)
                         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                             <a href="#">
-                                <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                                <img src="{{ asset('images/' . $service->category . '.jpg') }}" alt="{{ $service->name }}"
+                                    class="h-80 w-72 object-cover rounded-t-xl" />
                                 <div class="px-4 py-3 w-72">
-                                    <span class="text-gray-400 mr-3 uppercase text-xs">Service</span>
+                                    <span class="text-gray-400 mr-3 uppercase text-xs">{{ $service->category }}</span>
                                     <p class="text-lg font-bold text-black truncate block capitalize">{{ $service->name }}
                                     </p>
                                     <div class="flex items-center">
                                         <p class="text-lg font-semibold text-black cursor-auto my-3">R{{ $service->price }}
                                         </p>
-
                                         <div class="ml-auto">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
@@ -57,8 +56,9 @@
                             </a>
                         </div>
                     @endforeach
+
                 </div>
-                <!--   🛑 Product card - Ends Here  -->
+
 
 </section>
 
